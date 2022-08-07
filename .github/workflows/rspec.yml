@@ -23,10 +23,6 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
-    env:
-      RAILS_ENV: test
-      GEMFILE_RUBY_VERSION: 2.7.5
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby 2.7.5
