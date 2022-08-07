@@ -1,0 +1,35 @@
+inherit_from: .rubocop_todo.yml
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - '.git/**/*'
+  NewCops: enable
+
+# Commonly used screens these days easily fit more than 80 characters.
+Layout/LineLength:
+  Max: 120
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
