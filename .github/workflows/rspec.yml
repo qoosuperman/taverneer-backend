@@ -3,9 +3,8 @@ name: RSpec
 on: [push]
 
 jobs:
-  rspec:
-   runs-on: ubuntu-latest
-    container: ruby:2.7.5
+  test:
+    runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:12.7
@@ -18,28 +17,28 @@ jobs:
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
+    env:
+      RAILS_ENV: test
+      GEMFILE_RUBY_VERSION: 2.7.5
+
     steps:
-    - uses: actions/checkout@v1
-
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - name: Set up Ruby 2.7.5
+      uses: ruby/setup-ruby@v1
       with:
-        node-version: '10.x'
-        registry-url: 'https://registry.npmjs.org'
-
-    - name: Gem cache
-      id: cache-bundle
+        ruby-version: 2.7.5
+    - name: Cache gems
       uses: actions/cache@v1
       with:
         path: vendor/bundle
-        key: bundle-${{ hashFiles('**/Gemfile.lock') }}
-
-    - name: Bundle install
-      env:
-        RAILS_ENV: test
+        key: ${{ runner.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-rubocop-
+    - name: Install gems
       run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3 --path vendor/bundle
-
+        bundle config path vendor/bundle
+        bundle config set without 'default doc job cable storage ujs test db'
+        bundle install --jobs 4 --retry 3
     - name: Setup DB, Run tests
       env:
         PGHOST: postgres
