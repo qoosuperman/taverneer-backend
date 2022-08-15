@@ -33,3 +33,10 @@ RSpec/NamedSubject:
 
 RSpec/NestedGroups:
   Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/spec/**/*"
