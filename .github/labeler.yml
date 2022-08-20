@@ -1,0 +1,26 @@
+# ref: https://github.com/actions/labeler
+
+backend:
+  - 'app/**/*.rb'
+  - 'lib/**/*.rb'
+  - 'spec/**/*'
+  - 'config/**/*'
+
+migration:
+  - 'db/schema.rb'
+  - 'db/migrate/*'
+
+rubocop:
+  - '.rubocop.yml'
+  - '.rubocop_todo.yml'
+
+env:
+  - '.env.example'
+
+gem:
+  - 'Gemfile'
+  - 'Gemfile.lock'
+
+# operations
+github-action:
+  - '.github/*'
