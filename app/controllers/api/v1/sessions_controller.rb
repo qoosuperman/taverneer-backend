@@ -9,7 +9,7 @@ module Api
       def create
         user = warden.authenticate!
         sign_in(user)
-        respond_with_json(status: :created, message: 'success!')
+        respond_with_json(status: :created, message: 'Success!')
       end
 
       def destroy
@@ -17,7 +17,7 @@ module Api
         raise SessionUserNotFoundError, 'User Not Found' unless user
 
         sign_out(user)
-        respond_with_json(status: :ok, message: 'success!')
+        respond_with_json(status: :ok, message: 'Success!')
       rescue SessionUserNotFoundError
         respond_with_json(status: :bad_request, message: 'User Not Logged In!')
       end

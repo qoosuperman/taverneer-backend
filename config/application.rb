@@ -37,7 +37,7 @@ module TaverneerBackend
       # 之後行為變複雜的話，可以考慮學 devise 替換成 callable object
       # ref: https://github.com/heartcombo/devise/blob/main/lib/devise/failure_app.rb
       manager.failure_app = proc { |_env|
-        ['401', { 'Content-Type' => 'application/json' }, { message: 'Unauthorized', status: 401 }.to_json]
+        ['401', { 'Content-Type' => 'application/json' }, { message: 'Unauthorized', status: 'unauthorized' }.to_json]
       }
     end
   end

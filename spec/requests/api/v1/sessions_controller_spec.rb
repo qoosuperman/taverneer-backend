@@ -21,7 +21,7 @@ RSpec.describe 'Api::V1::SessionsController', type: :request do
         expect(response).to have_http_status(:created)
         expect(json_body).to eq({
                                   status: 'created',
-                                  message: 'success!'
+                                  message: 'Success!'
                                 })
       end
 
@@ -48,7 +48,7 @@ RSpec.describe 'Api::V1::SessionsController', type: :request do
         subject
         expect(response).to have_http_status(:unauthorized)
         expect(json_body).to eq({
-                                  status: 401,
+                                  status: 'unauthorized',
                                   message: 'Unauthorized'
                                 })
       end
@@ -73,7 +73,7 @@ RSpec.describe 'Api::V1::SessionsController', type: :request do
         expect(response).to have_http_status(:ok)
         expect(json_body).to eq({
                                   status: 'ok',
-                                  message: 'success!'
+                                  message: 'Success!'
                                 })
       end
     end
