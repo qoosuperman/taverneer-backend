@@ -4,6 +4,8 @@ require_relative 'boot'
 
 require 'rails/all'
 
+require_relative '../lib/authentication/password_strategy'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -30,5 +32,13 @@ module TaverneerBackend
     config.session_store :cookie_store, key: '_taverneer_sesson', expire_after: 1.day
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use config.session_store, config.session_options
+    config.middleware.use Warden::Manager do |manager|
+      manager.default_strategies :password
+      # 之後行為變複雜的話，可以考慮學 devise 替換成 callable object
+      # ref: https://github.com/heartcombo/devise/blob/main/lib/devise/failure_app.rb
+      manager.failure_app = proc { |_env|
+        ['401', { 'Content-Type' => 'application/json' }, { message: 'Unauthorized', status: 401 }.to_json]
+      }
+    end
   end
 end
