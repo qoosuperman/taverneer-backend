@@ -32,7 +32,7 @@ RSpec.describe 'Api::V1::SessionsController', type: :request do
 
       it 'stores user in session' do
         subject
-        expect(session['warden.user.default.key']).to eq(user)
+        expect(session['warden.user.default.key']).to eq(user.id)
       end
     end
 

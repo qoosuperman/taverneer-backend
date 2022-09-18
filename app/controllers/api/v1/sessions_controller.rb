@@ -26,7 +26,7 @@ module Api
 
       def sign_in(user)
         # 如果使用者已經登入就不做事
-        if warden.user('user') == user
+        if warden.user == user
           true
         else
           warden.set_user(user)
