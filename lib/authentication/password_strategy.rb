@@ -36,11 +36,7 @@ module Authentication
     end
 
     def params_auth_hash
-      if Rails.env.test?
-        params['user']
-      else
-        @env["action_dispatch.request.parameters"]['user']
-      end
+      params['user']
     end
 
     def password
