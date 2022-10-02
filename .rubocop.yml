@@ -46,3 +46,11 @@ Style/AsciiComments:
 Metrics/BlockLength:
   Exclude:
     - "**/spec/**/*"
+
+Metrics/MethodLength:
+  Exclude:
+    - "**/migrate/**/*"
+
+Metrics/AbcSize:
+  Exclude:
+    - "**/migrate/**/*"
