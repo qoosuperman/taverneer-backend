@@ -33,8 +33,10 @@ module Api
         end
       end
 
-      def sign_out(user)
-        warden.logout(user)
+      # warden 裡面登出只需要 scope
+      # 但未來 user 可能有需要做額外處理
+      def sign_out(_user)
+        warden.logout(:default) # default 為 scope
       end
     end
   end
