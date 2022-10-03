@@ -76,6 +76,11 @@ RSpec.describe 'Api::V1::SessionsController', type: :request do
                                   message: 'Success!'
                                 })
       end
+
+      it 'clears data in session' do
+        subject
+        expect(session['warden.user.default.key']).to be_nil
+      end
     end
 
     context 'when user not logged in' do
