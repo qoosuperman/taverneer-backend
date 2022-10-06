@@ -1,0 +1,16 @@
+{
+  "name": "taverneer-backend",
+  "scripts": {
+    "test": "echo OK!",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "!(schema).{rake,rb}": [
+      "bundle exec rubocop --fail-level=convention --display-only-fail-level-offenses --auto-correct --config=.rubocop.yml"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3"
+  }
+}
