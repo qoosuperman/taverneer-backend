@@ -6,6 +6,7 @@ class RecipeIngredient < ApplicationRecord
 
   validates :amount, presence: true
   validate :validate_amount_format
+  validates :ingredient_id, uniqueness: { scope: :recipe_id }
 
   private
 
