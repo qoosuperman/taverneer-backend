@@ -93,7 +93,7 @@ RSpec.configure do |config|
   #   Kernel.srand config.seed
 
   # ref: https://github.com/wardencommunity/warden/wiki/Testing
-  config.after do
+  config.after(type: :request) do
     Warden.test_reset!
   end
 end
