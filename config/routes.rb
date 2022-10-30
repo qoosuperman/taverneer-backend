@@ -6,6 +6,10 @@ Rails.application.routes.draw do
       get 'current_user', to: 'current_user#index'
       post 'users/sign_in', to: 'sessions#create'
       delete 'users/sign_out', to: 'sessions#destroy'
+
+      namespace :admin do
+        resources :recipes, only: [:create]
+      end
     end
   end
 end
