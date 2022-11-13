@@ -46,6 +46,7 @@ Style/AsciiComments:
 Metrics/BlockLength:
   Exclude:
     - "**/spec/**/*"
+    - "config/**/*"
 
 Metrics/MethodLength:
   Exclude:
