@@ -66,6 +66,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts_as_list (1.0.4)
+      activerecord (>= 4.2)
     ancestry (4.2.0)
       activerecord (>= 5.2.6)
     ast (2.4.2)
@@ -246,6 +248,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   ancestry
   bcrypt (~> 3.1.7)
   bootsnap
