@@ -40,6 +40,7 @@ gem 'bootsnap', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'ancestry'
 gem 'rack-cors'
+gem 'rails-patterns'
 gem 'warden'
 
 group :development, :test do
