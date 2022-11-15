@@ -48,6 +48,7 @@ RSpec/MultipleMemoizedHelpers:
 
 Naming/VariableNumber:
   EnforcedStyle: 'snake_case'
+  AllowedIdentifiers: [v1]
 
 Metrics/BlockLength:
   Exclude:
