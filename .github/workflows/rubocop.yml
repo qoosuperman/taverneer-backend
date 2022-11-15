@@ -25,4 +25,4 @@ jobs:
         bundle config set without 'default doc job cable storage ujs test db'
         bundle install --jobs 4 --retry 3
     - name: Run RuboCop
-      run: bundle exec rubocop --parallel
+      run: bundle exec rubocop --parallel --fail-level=convention --display-only-fail-level-offenses
