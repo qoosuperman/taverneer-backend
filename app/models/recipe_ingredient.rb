@@ -2,7 +2,7 @@
 
 class RecipeIngredient < ApplicationRecord
   belongs_to :recipe
-  belongs_to :ingredient
+  belongs_to :ingredient, autosave: true
 
   validates :amount, presence: true
   validate :validate_amount_format

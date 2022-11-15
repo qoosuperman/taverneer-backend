@@ -43,10 +43,24 @@ Style/Documentation:
 Style/AsciiComments:
   Enabled: false
 
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+Naming/VariableNumber:
+  EnforcedStyle: 'snake_case'
+
 Metrics/BlockLength:
   Exclude:
     - "**/spec/**/*"
     - "config/**/*"
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/forms/**/*'
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "**/spec/**/*"
 
 Metrics/MethodLength:
   Exclude:
@@ -55,3 +69,9 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Exclude:
     - "**/migrate/**/*"
+
+Metrics/MethodLength:
+  Severity: refactor
+
+Metrics/AbcSize:
+  Severity: refactor
