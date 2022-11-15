@@ -11,4 +11,6 @@ class Step < ApplicationRecord
   # rubocop:disable Rails/UniqueValidationWithoutIndex
   validates :position, uniqueness: { scope: :recipe_id }
   # rubocop:enable Rails/UniqueValidationWithoutIndex
+
+  acts_as_list scope: :recipe
 end
