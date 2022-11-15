@@ -75,3 +75,6 @@ Metrics/MethodLength:
 
 Metrics/AbcSize:
   Severity: refactor
+
+Metrics/ClassLength:
+  Severity: refactor

@@ -2,10 +2,11 @@
 
 RSpec.describe RecipeForm, type: :form do
   subject do
-    form = described_class.new(recipe)
     form.attributes = params
     form.save
   end
+
+  let(:form) { described_class.new(recipe) }
 
   context 'when creates a new recipe' do
     let(:recipe) { Recipe.new }
@@ -428,6 +429,86 @@ RSpec.describe RecipeForm, type: :form do
                             }
 
                           ])
+      end
+    end
+  end
+
+  context 'when invalid' do
+    context 'with out recipe_ingredient' do
+      let(:recipe) { Recipe.new }
+      let(:params) do
+        {
+          cocktail: {
+            name: 'Gin Tonic',
+            description: 'This is a good cocktail'
+          },
+          steps: [
+            {
+              description: '先將杯子做冰杯，放在冷凍庫半小時以上'
+            }
+          ],
+          glass_id: create(:glass).id
+        }
+      end
+
+      it 'raises error' do
+        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+        expect(form.errors.messages).to eq(base: ['至少需有 1 個 原料'])
+      end
+    end
+
+    context 'with out step' do
+      let(:recipe) { Recipe.new }
+      let(:params) do
+        {
+          cocktail: {
+            name: 'Gin Tonic',
+            description: 'This is a good cocktail'
+          },
+          ingredients:
+          [
+            {
+              name: 'new ingredient',
+              amount: '1 oz'
+            }
+          ],
+          glass_id: create(:glass).id
+        }
+      end
+
+      it 'raises error' do
+        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+        expect(form.errors.messages).to eq(base: ['至少需有 1 個 步驟'])
+      end
+    end
+
+    context 'when violates recipe_ingredient validation' do
+      let(:recipe) { Recipe.new }
+      let(:params) do
+        {
+          cocktail: {
+            name: 'Gin Tonic',
+            description: 'This is a good cocktail'
+          },
+          ingredients:
+          [
+            {
+              name: 'new ingredient',
+              amount: '1oz'
+            }
+          ],
+          steps: [
+            {
+              description: '先將杯子做冰杯，放在冷凍庫半小時以上'
+            }
+          ],
+          glass_id: create(:glass).id
+        }
+      end
+
+      it 'raises error' do
+        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+        expect(form.errors.messages).to eq(base: ['amount 必須為數字 + 單位，ex. "1 oz" 或者 "適量"'])
       end
     end
   end

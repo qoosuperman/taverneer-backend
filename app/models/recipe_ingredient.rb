@@ -14,6 +14,6 @@ class RecipeIngredient < ApplicationRecord
     return if /^\d+ \w+$/.match?(amount)
     return if amount == '適量'
 
-    errors.add(:amount, I18n.t('activerecord.errors.messages.exceed_max_authorized_users'))
+    errors.add(:amount, I18n.t('activerecord.errors.messages.malformed_amount'))
   end
 end
