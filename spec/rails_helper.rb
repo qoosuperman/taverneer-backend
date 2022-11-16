@@ -58,4 +58,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include FactoryBot::Syntax::Methods
+
+  # use Rails built-in time helpers, ex. travel_to
+  config.include ActiveSupport::Testing::TimeHelpers
 end
