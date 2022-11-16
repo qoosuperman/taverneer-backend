@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 202211116120000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.enum "publish_state", default: "draft", null: false, enum_type: "publish_state"
+    t.datetime "published_at", precision: nil
     t.index ["cocktail_id"], name: "index_recipes_on_cocktail_id"
     t.index ["glass_id"], name: "index_recipes_on_glass_id"
     t.index ["publish_state"], name: "index_recipes_on_publish_state"
