@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_02_120000) do
+ActiveRecord::Schema[7.0].define(version: 202211116120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_enum :publish_state, [
+    "draft",
+    "published",
+    "unpublished",
+  ], force: :cascade
 
   create_table "cocktails", force: :cascade do |t|
     t.string "name", null: false
@@ -53,8 +59,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_02_120000) do
     t.bigint "glass_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.enum "publish_state", default: "draft", null: false, enum_type: "publish_state"
     t.index ["cocktail_id"], name: "index_recipes_on_cocktail_id"
     t.index ["glass_id"], name: "index_recipes_on_glass_id"
+    t.index ["publish_state"], name: "index_recipes_on_publish_state"
   end
 
   create_table "steps", force: :cascade do |t|
