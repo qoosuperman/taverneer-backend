@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       delete 'users/sign_out', to: 'sessions#destroy'
 
       namespace :admin do
-        resources :recipes, only: [:create]
+        resources :recipes, only: [:create, :update, :destroy]
       end
     end
   end
