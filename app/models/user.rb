@@ -15,4 +15,8 @@ class User < ApplicationRecord
   validates :password, format: { with: PASSWORD_FORMAT, message: :malformed_password },
                        unless: proc { |user| user.password.nil? }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
+
+  def admin?
+    is_admin == true
+  end
 end
