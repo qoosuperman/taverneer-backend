@@ -43,7 +43,7 @@ class RecipeForm < ApplicationForm
   end
 
   def save
-    raise ActiveRecord::RecordInvalid unless valid?
+    raise ActiveRecord::RecordInvalid, self unless valid?
 
     ActiveRecord::Base.transaction do
       Step.where(id: @mark_for_destruction_step_ids).destroy_all
