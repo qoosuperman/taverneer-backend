@@ -3,9 +3,8 @@
 module Api
   module V1
     module Admin
-      class RecipesController < ApplicationController
+      class RecipesController < BaseController
         before_action :set_recipe, only: [:update, :destroy]
-        before_action :check_if_admin
 
         def create
           recipe = Recipe.new
@@ -37,12 +36,6 @@ module Api
         end
 
         private
-
-        def check_if_admin
-          return if current_user&.admin?
-
-          raise AccessDeniedError
-        end
 
         def set_recipe
           @recipe = Recipe.find(params[:id])
