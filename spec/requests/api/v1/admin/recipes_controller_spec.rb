@@ -1,22 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Api::V1::Admin::RecipesController', type: :request do
-  shared_examples_for 'cannot access by normal user' do
-    context 'when not logged in' do
-      let(:me) { create(:user) }
-
-      it_behaves_like 'AccessDeniedError'
-    end
-
-    context 'when logged in but not an admin' do
-      let(:me) { create(:user) }
-
-      before { login_as(me) }
-
-      it_behaves_like 'AccessDeniedError'
-    end
-  end
-
   describe '#create' do
     subject { post api_v1_admin_recipes_path, params: params, as: :json }
 
