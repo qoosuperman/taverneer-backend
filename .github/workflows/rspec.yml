@@ -25,10 +25,10 @@ jobs:
           --health-retries 5
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby 2.7.5
+    - name: Set up Ruby 3.1.2
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7.5
+        ruby-version: 3.1.2
     - name: Install gems
       run: |
         bundle install

@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.5'
+ruby '3.1.2'
 
 # Use Dotenv to fetch envs
 gem 'dotenv-rails'
@@ -56,7 +56,7 @@ end
 
 group :development do
   # RuboCop is a Ruby static code analyzer and code formatter.
-  gem 'rubocop', '~> 1.12.1', require: false
+  gem 'rubocop', '~> 1.30.0', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
