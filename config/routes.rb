@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
       namespace :admin do
         resources :recipes, only: [:create, :update, :destroy]
+        resources :glasses, only: [:create, :update, :destroy]
       end
     end
   end
