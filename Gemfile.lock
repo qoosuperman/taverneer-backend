@@ -190,7 +190,7 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
-    regexp_parser (2.5.0)
+    regexp_parser (2.6.1)
     reline (0.3.1)
       io-console (~> 0.5)
     rexml (3.2.5)
@@ -211,13 +211,13 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.11.0)
-    rubocop (1.12.1)
+    rubocop (1.30.1)
       parallel (~> 1.10)
-      parser (>= 3.0.0.0)
+      parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
-      rexml
-      rubocop-ast (>= 1.2.0, < 2.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.18.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.19.1)
@@ -240,7 +240,7 @@ GEM
     timeout (0.3.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (2.2.0)
+    unicode-display_width (2.3.0)
     uniform_notifier (1.16.0)
     virtus (2.0.0)
       axiom-types (~> 0.1)
@@ -273,7 +273,7 @@ DEPENDENCIES
   rails (~> 7.0.3, >= 7.0.3.1)
   rails-patterns
   rspec-rails
-  rubocop (~> 1.12.1)
+  rubocop (~> 1.30.0)
   rubocop-performance
   rubocop-rails
   rubocop-rspec
