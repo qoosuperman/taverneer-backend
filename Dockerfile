@@ -1,16 +1,5 @@
 # syntax = docker/dockerfile:experimental
 
-# Dockerfile used to build a deployable image for a Rails application.
-# Adjust as required.
-#
-# Common adjustments you may need to make over time:
-#  * Modify version numbers for Ruby, Bundler, and other products.
-#  * Add library packages needed at build time for your gems, node modules.
-#  * Add deployment packages needed by your application
-#  * Add (often fake) secrets needed to compile your assets
-
-#######################################################################
-
 # Learn more about the chosen Ruby stack, Fullstaq Ruby, here:
 #   https://github.com/evilmartians/fullstaq-ruby-docker.
 #
@@ -23,14 +12,13 @@ FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-${VARIANT} as base
 
 LABEL fly_launch_runtime="rails"
 
-ARG NODE_VERSION=16.15.0
-ARG YARN_VERSION=1.22.18
 ARG BUNDLER_VERSION=2.3.26
 
 ARG RAILS_ENV=production
 ENV RAILS_ENV=${RAILS_ENV}
 
-ENV RAILS_SERVE_STATIC_FILES true
+# API server => no static files
+ENV RAILS_SERVE_STATIC_FILES false
 ENV RAILS_LOG_TO_STDOUT true
 
 ARG BUNDLE_WITHOUT=development:test
@@ -42,11 +30,7 @@ RUN mkdir /app
 WORKDIR /app
 RUN mkdir -p tmp/pids
 
-RUN curl https://get.volta.sh | bash
-ENV VOLTA_HOME /root/.volta
-ENV PATH $VOLTA_HOME/bin:/usr/local/bin:$PATH
-RUN volta install node@${NODE_VERSION} yarn@${YARN_VERSION} && \
-    gem update --system --no-document && \
+RUN gem update --system --no-document && \
     gem install -N bundler -v ${BUNDLER_VERSION}
 
 #######################################################################
@@ -75,15 +59,6 @@ RUN bundle install && rm -rf vendor/bundle/ruby/*/cache
 
 #######################################################################
 
-# install node modules
-
-FROM build_deps as node_modules
-
-COPY package*json ./
-RUN npm install
-
-#######################################################################
-
 # install deployment packages
 
 FROM base
@@ -103,9 +78,6 @@ COPY --from=gems /app /app
 COPY --from=gems /usr/lib/fullstaq-ruby/versions /usr/lib/fullstaq-ruby/versions
 COPY --from=gems /usr/local/bundle /usr/local/bundle
 
-# copy installed node modules
-COPY --from=node_modules /app/node_modules /app/node_modules
-
 #######################################################################
 
 # Deploy your application
@@ -116,13 +88,6 @@ RUN chmod +x /app/bin/* && \
     sed -i 's/ruby.exe\r*/ruby/' /app/bin/* && \
     sed -i 's/ruby\r*/ruby/' /app/bin/* && \
     sed -i '/^#!/aDir.chdir File.expand_path("..", __dir__)' /app/bin/*
-
-# The following enable assets to precompile on the build server.  Adjust
-# as necessary.  If no combination works for you, see:
-# https://fly.io/docs/rails/getting-started/existing/#access-to-environment-variables-at-build-time
-ENV SECRET_KEY_BASE 1
-# ENV AWS_ACCESS_KEY_ID=1
-# ENV AWS_SECRET_ACCESS_KEY=1
 
 # Run build task defined in lib/tasks/fly.rake
 ARG BUILD_COMMAND="bin/rails fly:build"
