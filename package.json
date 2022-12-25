@@ -6,7 +6,7 @@
   },
   "lint-staged": {
     "!(schema).{rake,rb}": [
-      "bundle exec rubocop --fail-level=convention --display-only-fail-level-offenses --auto-correct --config=.rubocop.yml"
+      "bundle exec rubocop --fail-level=convention --autocorrect --config=.rubocop.yml"
     ]
   },
   "devDependencies": {
