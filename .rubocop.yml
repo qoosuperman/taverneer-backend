@@ -46,6 +46,9 @@ Style/AsciiComments:
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
+Rails/RakeEnvironment:
+  Enabled: false
+
 Naming/VariableNumber:
   EnforcedStyle: 'snake_case'
   AllowedIdentifiers: [v1]
