@@ -11,13 +11,28 @@ RSpec.describe 'Api::V1::CurrentUserController', type: :request do
         sign_in(user)
       end
 
-      it 'gets ok response' do
-        subject
-        expect(response).to have_http_status(:ok)
-        expect(json_body).to match({
-                                     status: 'ok',
-                                     user: { name: 'qoosuperman' }
-                                   })
+      context 'when user is not admin' do
+        it 'gets ok response and is_admin: false' do
+          subject
+          expect(response).to have_http_status(:ok)
+          expect(json_body).to match({
+                                       status: 'ok',
+                                       user: { name: 'qoosuperman', is_admin: false }
+                                     })
+        end
+      end
+
+      context 'when user is admin' do
+        let(:user) { create(:user, :admin, name: 'qoosuperman') }
+
+        it 'gets ok response and is_admin: true' do
+          subject
+          expect(response).to have_http_status(:ok)
+          expect(json_body).to match({
+                                       status: 'ok',
+                                       user: { name: 'qoosuperman', is_admin: true }
+                                     })
+        end
       end
     end
 
