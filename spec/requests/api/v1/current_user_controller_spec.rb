@@ -8,7 +8,7 @@ RSpec.describe 'Api::V1::CurrentUserController', type: :request do
 
     context 'when already logged in' do
       before do
-        allow_any_instance_of(Warden::SessionSerializer).to receive(:fetch).and_return(user)
+        sign_in(user)
       end
 
       it 'gets ok response' do
