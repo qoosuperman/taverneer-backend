@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         resources :recipes, only: [:create, :update, :destroy]
         resources :glasses, only: [:create, :update, :destroy]
         resources :ingredients
+        post 'direct_upload', to: 'direct_upload#create'
       end
     end
   end

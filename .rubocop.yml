@@ -71,14 +71,14 @@ Metrics/MethodLength:
     - "**/migrate/**/*"
 
 Metrics/AbcSize:
+  Severity: refactor
   Exclude:
     - "**/migrate/**/*"
 
 Metrics/MethodLength:
   Severity: refactor
-
-Metrics/AbcSize:
-  Severity: refactor
+  Exclude:
+    - "**/migrate/**/*"
 
 Metrics/ClassLength:
   Severity: refactor

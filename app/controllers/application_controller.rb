@@ -13,6 +13,11 @@ class ApplicationController < ActionController::API
     render json: { message: record_errors }, status: :unprocessable_entity
   end
 
+  rescue_from ActionController::ParameterMissing do |error|
+    message = Rails.env.development? ? error.full_message : '參數錯誤'
+    render json: { message: }, status: :unprocessable_entity
+  end
+
   def respond_access_denied
     render json: { message: '由於缺少權限，無法進行此操作' }, status: :forbidden
   end

@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
+gem 'aws-sdk-s3', require: false
 # Use Dotenv to fetch envs
 gem 'dotenv-rails'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -35,7 +36,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootsnap', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem 'image_processing', '~> 1.2'
 
 gem 'aasm'
 gem 'activerecord-postgres_enum'

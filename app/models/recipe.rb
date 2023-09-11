@@ -9,6 +9,8 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
 
+  has_one_attached :cover_image
+
   validates :publish_state, presence: true
 
   aasm :publish_state, column: :publish_state do
