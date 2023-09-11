@@ -40,5 +40,6 @@ module TaverneerBackend
         ['401', { 'Content-Type' => 'application/json' }, { message: 'Unauthorized', status: 'unauthorized' }.to_json]
       }
     end
+    Rails.application.routes.default_url_options = { host: ENV.fetch('APPLICATION_HOST', nil) }
   end
 end
