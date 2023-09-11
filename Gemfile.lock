@@ -76,6 +76,22 @@ GEM
     ancestry (4.2.0)
       activerecord (>= 5.2.6)
     ast (2.4.2)
+    aws-eventstream (1.2.0)
+    aws-partitions (1.820.0)
+    aws-sdk-core (3.181.0)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.651.0)
+      aws-sigv4 (~> 1.5)
+      jmespath (~> 1, >= 1.6.1)
+    aws-sdk-kms (1.71.0)
+      aws-sdk-core (~> 3, >= 3.177.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.134.0)
+      aws-sdk-core (~> 3, >= 3.181.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.6)
+    aws-sigv4 (1.6.0)
+      aws-eventstream (~> 1, >= 1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -124,6 +140,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jmespath (1.6.2)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -277,6 +294,7 @@ DEPENDENCIES
   activerecord-postgres_enum
   acts_as_list
   ancestry
+  aws-sdk-s3
   bcrypt (~> 3.1.7)
   bootsnap
   bullet
